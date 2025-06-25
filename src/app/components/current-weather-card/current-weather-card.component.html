@@ -1,0 +1,13 @@
+<mat-card class="current-weather-card">
+    <mat-card-title>{{ city  | titlecase }}</mat-card-title>
+    <mat-card-content>
+        <!-- <div class="weather-icon">{{ getIconFromCode(code) }}</div> -->
+      <div class="weather-icon">{{ code | weatherIcon }}</div>
+        
+        <div class="temp">{{ temperature }}°C</div>
+        <div class="min-max">Min: {{ min }}°C | Max: {{ max }}°C</div>
+        <!-- <div class="condition">{{ getConditionFromCode(code) }}</div> -->
+        <div class="condition">{{ code | weathercode }}</div>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,17 @@
+.current-weather-card {
+      text-align: center;
+      margin-bottom: 16px;
+      padding: 10px;
+    }
+    .weather-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+    .temp {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .min-max, .condition {
+      font-size: 14px;
+      margin-top: 4px;
+    }

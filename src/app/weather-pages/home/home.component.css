@@ -1,0 +1,108 @@
+.container {
+  /* padding: 20px; */
+  /* max-width: 900px; */
+  margin: auto;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hourly-temps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.hour-block {
+  background: #f5f5f5;
+  padding: 8px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+}
+
+
+.hourly-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 10px;
+}
+
+.hour-block {
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.bg-sunny {
+  background: linear-gradient(to bottom, #fbc02d, #fff59d);
+  /* yellow sky */
+}
+
+.bg-cloudy {
+  background: linear-gradient(to bottom, #90a4ae, #cfd8dc);
+  /* greyish */
+}
+
+.bg-rainy {
+  background: linear-gradient(to bottom, #4fc3f7, #81d4fa);
+  /* rainy blue */
+}
+
+.bg-thunder {
+  background: linear-gradient(to bottom, #455a64, #90a4ae);
+  /* dark stormy */
+}
+
+.bg-snowy {
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  /* icy blue */
+}
+
+.bg-foggy {
+  background: linear-gradient(to bottom, #cfd8dc, #eceff1);
+  /* foggy */
+}
+
+.bg-default {
+  background-color: #e0f7fa;
+  /* fallback */
+}
+
+.error-data {
+  padding: 10px;
+  background-color: #90a4ae;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hourly-weather, .weekly-weather {
+    margin-bottom: 10px;
+    border: 1px solid #90a4ae;
+    padding: 10px;
+    border-radius: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.hourly-weather h2, 
+.weekly-weather h2 {
+   color: white;
+}
+
