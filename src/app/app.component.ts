@@ -7,7 +7,7 @@ import { HomeComponent } from "./weather-pages/home/home.component";
   standalone: true,
   imports: [RouterOutlet, HomeComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'weather-forecast-app';

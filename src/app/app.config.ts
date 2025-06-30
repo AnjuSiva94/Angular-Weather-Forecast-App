@@ -14,5 +14,5 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
     provideAnimations(),
-    importProvidersFrom(MatSnackBarModule)]
+    importProvidersFrom(MatSnackBarModule)] //lets you inject services globally.
 };

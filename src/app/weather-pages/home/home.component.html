@@ -1,78 +1,60 @@
-<div class="container">
-  <app-search-bar (search)="onSearch($event)"></app-search-bar>
-  @if(loading()){
-  <div class="spinner">
-    <mat-spinner></mat-spinner>
-  </div>
-  }
-  @if(error() !=''){
-  <div class="error-data">{{error() }}</div>
-  }@else{
-
-
-
-
-  @if (weatherData()) {
-  <div>
-    <div [appWeatherBackground]="currentWeatherCode()">
-      <app-current-weather-card [city]="city()" [temperature]="currentTempSig()" [min]="currentMinTempSig()"
-        [max]="currentMaxTempSig()" [code]="currentWeatherCode()" />
-
+<div class="home">
+  <div class="home__container">
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    @if(loading()){
+    <div class="home__spinner">
+      <mat-spinner></mat-spinner>
     </div>
-    <div class="hourly-weather">
-      <h2>Today's Hourly Temperatures - {{ city() | titlecase }}</h2>
-      <!-- <div class="hourly-temps">
-      <div *ngFor="let t of currentTemps()" class="hour-block">
-         <div>{{ t.icon }}</div>
-        <strong>{{ t.time }}</strong>: {{ t.temp }}°C
-      </div>
-    </div> -->
+    }
+    @if(error() !=''){
+    <div class="home__error-data">{{error() }}</div>
+    }@else{
 
-      <div class="hourly-carousel">
-        <!-- <div class="hour-block" *ngFor="let t of currentTemps(); let i= index">
-        <strong *ngIf="i==0;">Now</strong>
-        <strong *ngIf="i!=0;">{{ t.time }}</strong>
-        <div>{{ t.icon }}</div>
-        <div>{{ t.temp }}°C</div>
-      </div> -->
-        @for (t of currentTemps(); track t; let i = $index) {
-        <div class="hour-block">
-          @if (i === 0) {
-          <strong>Now</strong>
-          } @else {
-          <strong>{{ t.time }}</strong>
+
+
+
+    @if (weatherData()) {
+    <div>
+      <div [appWeatherBackground]="currentCodeSig()">
+        <app-current-weather-card [city]="city()" [temperature]="currentTempSig()" [min]="currentMinTempSig()"
+          [max]="currentMaxTempSig()" [code]="currentCodeSig()" />
+
+      </div>
+      <div class="home__hourly-weather">
+        <h2 class="home__hourly-weather-title">Today's Hourly Temperatures - {{ city() | titlecase }}</h2>
+
+        <div class="home__hourly-weather-carousel">
+
+          @for (t of currentTemps(); track t; let i = $index) {
+          <div class="home__hourly-weather-carousel-block">
+            @if (i === 0) {
+            <strong>Now</strong>
+            } @else {
+            <strong>{{ t.time }}</strong>
+            }
+            <div>{{ t.icon }}</div>
+            <div>{{ t.temp }}°C</div>
+            <div>{{ t.code |weathercode }}</div>
+          </div>
           }
-          <div>{{ t.icon }}</div>
-          <div>{{ t.temp }}°C</div>
         </div>
-        }
+      </div>
+      <div class="home__weekly-weather">
+
+        <h2 class="home__weekly-weather-title">7-Day Forecast</h2>
+        <div class="home__weekly-weather-forecast">
+
+          @if (forecastList().length > 0) {
+            @for (day of forecastList(); track day.date) {
+            <app-weather-card [date]="day.date" [max]="day.max" [min]="day.min" [code]="day.code">
+            </app-weather-card>
+            }
+          }
+        </div>
+
       </div>
     </div>
-    <div class="weekly-weather">
-
-      <h2>7-Day Forecast</h2>
-      <div class="forecast">
-        <!-- @if (weatherData() && weatherData().daily?.time?.length > 0) {
-        @for (i of weatherData().daily.time;track i; let idx = $index) {
-        <app-weather-card [date]="weatherData().daily.time[idx]" [max]="weatherData().daily.temperature_2m_max[idx]"
-          [min]="weatherData().daily.temperature_2m_min[idx]" [code]="weatherData().daily.weathercode[idx]">
-        </app-weather-card>
-        }
-        } -->
-
-
-        @if (forecastList().length > 0) {
-        @for (day of forecastList(); track day.date) {
-        <app-weather-card [date]="day.date" [max]="day.max" [min]="day.min" [code]="day.code">
-        </app-weather-card>
-        }
-        }
-
-
-      </div>
-
-    </div>
+    }
+    }
   </div>
-  }
-  }
 </div>

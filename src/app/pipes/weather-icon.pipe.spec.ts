@@ -1,8 +1,18 @@
 import { WeatherIconPipe } from './weather-icon.pipe';
 
-describe('WeatherIconPipe', () => {
+fdescribe('WeatherIconPipe', () => {
+  let pipe: WeatherIconPipe;
+  beforeEach(() => {
+    pipe = new WeatherIconPipe();
+  })
+
   it('create an instance', () => {
-    const pipe = new WeatherIconPipe();
+
     expect(pipe).toBeTruthy();
+  });
+
+   it('should return correct icon', () => {
+
+    expect(pipe.transform(0)).toBe('☀️');
   });
 });

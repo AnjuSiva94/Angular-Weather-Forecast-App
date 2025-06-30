@@ -1,0 +1,127 @@
+@mixin home__text($size: 10px, $color: #000, $wt: normal, $align: center) {
+  font-size: $size;
+  font-weight: $wt;
+  color: $color;
+  text-align: $align;
+}
+
+@mixin home__grid-box($radius: 8px) {
+  border-radius: $radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@mixin home__grid {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #90a4ae;
+  @include home__grid-box(8px)
+}
+
+
+
+.home {
+
+  &__container {
+    margin: auto;
+  }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &__error-data {
+    @include home__text(16px, #ffffff, 500, center);
+    padding: 10px;
+    background-color: #90a4ae;
+    @include home__grid-box(8px)
+  }
+
+  &__hourly-weather {
+    @include home__grid;
+
+
+    & h2 {
+      color: white;
+    }
+
+
+
+    &-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 10px;
+
+      &-block {
+        background: #f5f5f5;
+        padding: 8px;
+        border-radius: 4px;
+        text-align: center;
+        min-width: 100px;
+        flex-shrink: 0;
+
+        & div {
+          margin-bottom: 9px;
+        }
+      }
+    }
+  }
+
+  &__weekly-weather {
+    @include home__grid;
+
+    & h2 {
+      color: white;
+    }
+  }
+
+
+  &__weekly-weather-forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+
+  .bg-sunny {
+    background: linear-gradient(to bottom, #fbc02d, #fff59d);
+    /* yellow sky */
+  }
+
+  .bg-cloudy {
+    background: linear-gradient(to bottom, #90a4ae, #cfd8dc);
+    /* greyish */
+  }
+
+  .bg-rainy {
+    background: linear-gradient(to bottom, #4fc3f7, #81d4fa);
+    /* rainy blue */
+  }
+
+  .bg-thunder {
+    background: linear-gradient(to bottom, #455a64, #90a4ae);
+    /* dark stormy */
+  }
+
+  .bg-snowy {
+    background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+    /* icy blue */
+  }
+
+  .bg-foggy {
+    background: linear-gradient(to bottom, #cfd8dc, #eceff1);
+    /* foggy */
+  }
+
+  .bg-default {
+    background-color: #e0f7fa;
+    /* fallback */
+  }
+
+
+
+
+}

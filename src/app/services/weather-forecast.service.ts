@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 
@@ -9,29 +9,43 @@ import { Observable, throwError } from 'rxjs';
 })
 export class WeatherForecastService {
 
-  
+
   constructor(private http: HttpClient) { }
   getCoordinates(city: string): Observable<{ lat: number; lon: number }> {
-    return this.http.get<any>(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${city}`;
+    return this.http.get<any>(url)
       .pipe(
         map(response => {
           debugger;
-          const loc = response.results?.[0];
-          if (!loc) throw new Error('City not found');
-          return { lat: loc.latitude, lon: loc.longitude };
+          const exactMatch = response.results?.find(
+            (item: any) => item.name.toLowerCase() === city.toLowerCase()
+          );
+          if (exactMatch) {
+            return { lat: exactMatch.latitude, lon: exactMatch.longitude };
+          }
+          throw new Error('City not found');
+
+        }),
+        catchError(error => {
+          return throwError(() => new Error("City not found"));
         })
       );
   }
 
   getWeather(lat: number, lon: number): Observable<any> {
-    
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode&hourly=temperature_2m,weathercode&timezone=auto`;
-    return this.http.get(url);
+    return this.http.get(url).pipe(catchError(error => {
+      console.error('Error fetching weather:', error);
+      return throwError(() => new Error('Failed to fetch weather data. Please try again later.'))
+    }));
   }
 
   getCityWeather(city: string): Observable<any> {
     return this.getCoordinates(city).pipe(
-      switchMap(coords => this.getWeather(coords.lat, coords.lon))
+      switchMap(coords => this.getWeather(coords.lat, coords.lon)),
+      catchError(error => {
+        return throwError(() => new Error('Failed to fetch weather data. Please try again later.'))
+      })
     );
   }
 }

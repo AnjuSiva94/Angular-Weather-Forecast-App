@@ -1,0 +1,17 @@
+@mixin weather-card__text($size: 15px, $mb: 5px, $wt: normal) {
+  font-size: $size;
+  margin-bottom: $mb;
+  font-weight: $wt;
+}
+
+.weather-card {
+    .mat-mdc-card {
+        padding: 10px !important;
+        text-align: center !important;
+    }
+    @include weather-card__text();
+
+   &__icon{
+    font-size: 24px;
+   }
+}

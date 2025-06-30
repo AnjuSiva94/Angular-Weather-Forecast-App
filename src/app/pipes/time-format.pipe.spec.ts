@@ -1,8 +1,19 @@
 import { TimeFormatPipe } from './time-format.pipe';
 
-describe('TimeFormatPipe', () => {
+fdescribe('TimeFormatPipe', () => {
+
+  let pipe: TimeFormatPipe;
+
+  beforeEach(() => {
+    pipe = new TimeFormatPipe();
+  })
+
   it('create an instance', () => {
-    const pipe = new TimeFormatPipe();
+
     expect(pipe).toBeTruthy();
   });
+
+  it('should transform 20:00 to 8:00 PM', () => {
+    expect(pipe.transform('20:00')).toBe('8:00 PM')
+  })
 });

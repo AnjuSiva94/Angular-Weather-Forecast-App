@@ -1,0 +1,33 @@
+@mixin current-weather-card__text($size: 10px, $mb: 10px, $wt: normal) {
+  font-size: $size;
+  margin-bottom: $mb;
+  font-weight: $wt;
+}
+
+.current-weather-card {
+  &__container {
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 10px;
+  }
+
+  &__title {
+    @include current-weather-card__text(20px, 8px);
+  }
+
+  &__weather-icon {
+    @include current-weather-card__text(48px, 8px);
+
+  }
+
+  &__temp {
+    @include current-weather-card__text(40px, 8px, bold);
+   
+
+  }
+
+  &__min-max,
+  &__condition {
+    @include current-weather-card__text(14px, 8px);
+  }
+}

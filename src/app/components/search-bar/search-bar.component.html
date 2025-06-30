@@ -1,8 +1,10 @@
-<div class="search-container">
-    <mat-form-field appearance="fill" class="full-width mat-weather-input">
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput placeholder="Enter city" [(ngModel)]="city" (keyup.enter)="searchCity()">
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="searchCity()">Search</button>
-
+<div class="search-bar">
+    <div class="search-bar__container">
+        <mat-form-field appearance="fill" class="search-bar__full-width mat-weather-input">
+            <mat-icon class="search-bar__icon" matPrefix>search</mat-icon>
+            <input matInput placeholder="Enter city" [(ngModel)]="city" (keyup.enter)="searchCity()">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="searchCity()" [ngClass]="!city().trim()?'disabled':''"
+            [disabled]="!city().trim()">Search</button>
+    </div>
 </div>

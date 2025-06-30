@@ -1,0 +1,68 @@
+@mixin search-bar__text($size: 10px, $color: #000, $wt: normal) {
+  font-size: $size;
+  color: $color;
+  font-weight: $wt;
+}
+
+.search-bar {
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 10px;
+  }
+
+  &__full-width {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  &__icon {
+    @include search-bar__text(30px,#0288d1 );
+    margin-right: 8px;
+  
+
+  }
+
+  input.mat-input-element {
+    border-radius: 20px;
+    padding: 8px 16px;
+    outline: none;
+    font-size: 16px;
+  }
+
+  button {
+    @include search-bar__text(16px, #fff,bold);
+    border-radius: 25px;
+    padding: 0 24px;
+    background-color: #0288d1;  
+    border: none;
+    cursor: pointer;   
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #0277bd;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+
+  }
+
+}
+
+
+
+
+::ng-deep .mdc-text-field__input {
+  background-color: #fff !important;
+  border-radius: 25px !important;
+  
+  padding: 5px !important;
+  height: 30px !important;
+}
