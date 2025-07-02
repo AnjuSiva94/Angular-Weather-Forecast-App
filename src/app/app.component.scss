@@ -10,10 +10,7 @@
   border: 1px solid #90a4ae;
   @include app__grid-box(8px)
 }
-
-.app {
-
-  :host {
+ :host {
     @include app__grid;
     display: block;
     margin: 10px;
@@ -36,6 +33,9 @@
 
 
   }
+.app {
+
+ 
 
   &__header {
     text-align: center;

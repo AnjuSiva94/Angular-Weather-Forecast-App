@@ -1,0 +1,5 @@
+@mixin app_text($size: 10px, $mb: 10px, $wt: normal) {
+  font-size: $size;
+  margin-bottom: $mb;
+  font-weight: $wt;
+}

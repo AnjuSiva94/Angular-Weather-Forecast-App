@@ -9,22 +9,11 @@ import { DateSuffixPipe } from '../../pipes/date-suffix.pipe';
   selector: 'app-weather-card',
   standalone: true,
   imports: [
-    MatCardModule, WeatherIconPipe, WeekDayPipe,
+    MatCardModule,
+    WeatherIconPipe,
+    WeekDayPipe,
     DateSuffixPipe],
-
-  template: `
-  <div class="weather-card">
-    <mat-card>
-      <mat-card-title class="weather-card__title">{{ date | dateSuffix  }} , {{ date | weekDay }}</mat-card-title>
-      <mat-card-content>
-        <div class="weather-card__icon">{{ code | weatherIcon }}</div>
-        <p class="weather-card__max">Max: {{ max }}°C</p>
-        <p class="weather-card__min">Min: {{ min }}°C</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-`
-  ,
+  templateUrl: './weather-card.component.html',
   styleUrl: './weather-card.component.scss'
 })
 export class WeatherCardComponent {

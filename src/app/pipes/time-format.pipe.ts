@@ -10,7 +10,7 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 export class TimeFormatPipe implements PipeTransform {
 
   transform(time: string, format: '12' | '24' = '12'): string {
-   if (!time) return '';
+    if (!time) return '';
 
     const [hoursStr, minutesStr] = time.split(':');
     let hours = parseInt(hoursStr, 10);
@@ -18,14 +18,16 @@ export class TimeFormatPipe implements PipeTransform {
 
     if (isNaN(hours) || isNaN(minutes)) return '';
 
-    if (format === '24') {
+    else if (format === '24') {
       return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     }
+    else {
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
 
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12 || 12;
+      return `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+    }
 
-    return `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
-     }
+  }
 
 }

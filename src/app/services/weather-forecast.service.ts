@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { WeatherDataResponse } from '../models/weather-response.model';
 
 
 @Injectable({
@@ -32,15 +33,17 @@ export class WeatherForecastService {
       );
   }
 
-  getWeather(lat: number, lon: number): Observable<any> {
+  getWeather(lat: number, lon: number): Observable<WeatherDataResponse> {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode&hourly=temperature_2m,weathercode&timezone=auto`;
-    return this.http.get(url).pipe(catchError(error => {
-      console.error('Error fetching weather:', error);
-      return throwError(() => new Error('Failed to fetch weather data. Please try again later.'))
-    }));
+    return this.http.get<WeatherDataResponse>(url)
+      .pipe(catchError(error => {
+        console.error('Error fetching weather:', error);
+        return throwError(() =>
+          new Error('Failed to fetch weather data. Please try again later.'))
+      }));
   }
 
-  getCityWeather(city: string): Observable<any> {
+  getCityWeather(city: string): Observable<WeatherDataResponse> {
     return this.getCoordinates(city).pipe(
       switchMap(coords => this.getWeather(coords.lat, coords.lon)),
       catchError(error => {
