@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {weatherDescriptions} from '../constants/weather-code'
+import {weatherDescriptions} from '../constants/weather-code.constant'
 @Pipe({
   name: 'weathercode',
   standalone: true,

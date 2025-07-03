@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { WeatherDataResponse } from '../models/weather-response.model';
+import { WeatherDataResponse } from '../interfaces/weather-response.interface';
 
 
 @Injectable({

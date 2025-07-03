@@ -1,5 +1,5 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import {weatherEmojiMap} from '../constants/weather-emoji'
+import {weatherEmojiMap} from '../constants/weather-emoji.constant'
 @Pipe({
   name: 'weatherIcon',
   standalone: true
